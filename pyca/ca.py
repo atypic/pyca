@@ -1,29 +1,40 @@
 import numpy as np
 
-def step_ca(timesteps, width, ruleset, startstate):
-    cell_grid = np.zeros((timesteps + 1, width), dtype=int)
-    cell_grid[0] = startstate  # np.random.randint(2, size=width)
-    g = cell_grid
-    W = width
-    for j in range(timesteps):
-        for i in range(width):
-            setrule = (g[j, (i - 1) % W]) << 2 | \
-                      (g[j, i % W]) << 1 | \
-                      (g[j, (i + 1) % W])
-            next_cell_state = (ruleset >> setrule) & 1
-            cell_grid[j + 1, i] = next_cell_state
-
-        yield cell_grid[j + 1]
-
-def bool2int(x):
-    y = 0
-    for i,j in enumerate(x):
-        if i == len(x) - 1:
-            if j == 1:
-                y *= -1
+class ElementaryCA(None):
+    def __init__(self, size = 32, ruleset = 110, max_timesteps = 1000, startstate = 'random'):
+        self.size = 32
+        self.cell_grid = np.zeros((max_timesteps + 1, self.size), dtype=int)
+        if startstate == 'random': 
+            self.cell_grid[0] =  np.random.randint(2, size=width)
         else:
-            y += j<<i
-    return int(y)
+            self.cell_grid[0] = startstate
+
+        self.ruleset = 110
+        self.max_timesteps = 1000
+     
+    def step_ca(self):#, timesteps, width, ruleset, startstate):
+        g = self.cell_grid
+        W = self.size
+        for j in range(timesteps):
+            for i in range(self.size):
+                setrule = (g[j, (i - 1) % W]) << 2 | \
+                          (g[j, i % W]) << 1 | \
+                          (g[j, (i + 1) % W])
+                next_cell_state = (self.ruleset >> setrule) & 1
+                self.cell_grid[j + 1, i] = next_cell_state
+
+            yield self.cell_grid[j + 1]
+
+    @staticmethod
+    def bool2int(x):
+        y = 0
+        for i,j in enumerate(x):
+            if i == len(x) - 1:
+                if j == 1:
+                    y *= -1
+            else:
+                y += j<<i
+        return int(y)
 
 if __name__ == "__main__":
     initial_state = np.random.randint(0,2,(32,))
