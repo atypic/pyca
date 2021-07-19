@@ -15,7 +15,7 @@ class ElementaryCA():
     def step_ca(self):#, timesteps, width, ruleset, startstate):
         g = self.cell_grid
         W = self.size
-        for j in range(timesteps):
+        for j in range(self.max_timesteps):
             for i in range(self.size):
                 setrule = (g[j, (i - 1) % W]) << 2 | \
                           (g[j, i % W]) << 1 | \
