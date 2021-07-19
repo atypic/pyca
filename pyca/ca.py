@@ -1,6 +1,6 @@
 import numpy as np
 
-class ElementaryCA(None):
+class ElementaryCA():
     def __init__(self, size = 32, ruleset = 110, max_timesteps = 1000, startstate = 'random'):
         self.size = 32
         self.cell_grid = np.zeros((max_timesteps + 1, self.size), dtype=int)
