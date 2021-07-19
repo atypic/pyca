@@ -5,7 +5,7 @@ class ElementaryCA():
         self.size = 32
         self.cell_grid = np.zeros((max_timesteps + 1, self.size), dtype=int)
         if startstate == 'random': 
-            self.cell_grid[0] =  np.random.randint(2, size=width)
+            self.cell_grid[0] =  np.random.randint(2, size=self.size)
         else:
             self.cell_grid[0] = startstate
 
