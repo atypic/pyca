@@ -34,7 +34,6 @@ class ElementaryCA():
     def get_history(self):
         #build a continous history.
         overflow = self.steps % self.max_save_timesteps
-        print(overflow)
         if overflow > 0:
             return np.concatenate((self.history[overflow:], self.history[:overflow]))
         else:
