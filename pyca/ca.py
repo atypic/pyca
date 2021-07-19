@@ -14,7 +14,10 @@ class ElementaryCA():
         self.ruleset = 110
         self.max_save_timesteps = save_timesteps
         self.steps = 0
-     
+
+    def __repr__(self) -> str:
+        return f"R {self.rulset} W  {self.size} CS {self.current_state}"
+        
     def step_ca(self):#, timesteps, width, ruleset, startstate):
         g = self.current_state
         W = self.size
