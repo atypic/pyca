@@ -16,8 +16,8 @@ class ElementaryCA():
         self.steps = 0
 
     def __repr__(self) -> str:
-        return f"R {self.rulset} W  {self.size} CS {self.current_state}"
-        
+        return f"R {self.ruleset} W  {self.size} CS {self.current_state}"
+
     def step_ca(self):#, timesteps, width, ruleset, startstate):
         g = self.current_state
         W = self.size
