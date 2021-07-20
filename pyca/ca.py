@@ -2,7 +2,7 @@ import numpy as np
 
 class ElementaryCA():
     def __init__(self, size = 32, ruleset = 110, save_timesteps = 1000, startstate = 'random'):
-        self.size = 32
+        self.size = size
         self.history = np.zeros((save_timesteps, self.size), dtype=int)
         #self.current_state = np.zeros((save_timesteps + 1, self.size), dtype=int)
         if startstate == 'random': 
