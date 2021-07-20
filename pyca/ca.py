@@ -5,8 +5,9 @@ class ElementaryCA():
         self.size = size
         self.history = np.zeros((save_timesteps, self.size), dtype=int)
         #self.current_state = np.zeros((save_timesteps + 1, self.size), dtype=int)
-        if startstate == 'random': 
-            self.current_state =  np.random.randint(2, size=self.size)
+        if type(startstate) == str:
+            if startstate == 'random': 
+                self.current_state =  np.random.randint(2, size=self.size)
         else:
             self.current_state = startstate
         self.history[0] = self.current_state
