@@ -12,6 +12,7 @@ class ElementaryCA():
             self.current_state = startstate
         self.history[0] = self.current_state
 
+        self.saved_initial_state = self.current_state[:]
         self.ruleset = 110
         self.max_save_timesteps = save_timesteps
         self.steps = 0
@@ -19,6 +20,15 @@ class ElementaryCA():
     def __repr__(self) -> str:
         return f"R {self.ruleset} W  {self.size} CS {self.current_state}"
 
+    def reset(self, initial_state=None):
+        if initial_state is not None:
+            self.current_state = initial_state
+        else:
+            self.current_state = self.saved_initial_state
+        self.history[0] = self.current_state
+        self.steps = 0
+        return
+        
     def step_ca(self):#, timesteps, width, ruleset, startstate):
         g = self.current_state
         W = self.size
